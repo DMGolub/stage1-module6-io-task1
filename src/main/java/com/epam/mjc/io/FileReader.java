@@ -21,7 +21,7 @@ public class FileReader {
                     try {
                         age = Integer.parseInt(keyValue[1]);
                     } catch (NumberFormatException nfe) {
-                        System.err.println("Error while parsing age: " + nfe.getMessage());
+                        System.out.println("Error while parsing age: " + nfe.getMessage());
                     }
                 } else if (keyValue[0].equals("Email")) {
                     email = keyValue[1];
@@ -29,14 +29,14 @@ public class FileReader {
                     try {
                         phone = Long.parseLong(keyValue[1]);
                     } catch (NumberFormatException nfe) {
-                        System.err.println("Error while parsing phone: " + nfe.getMessage());
+                        System.out.println("Error while parsing phone: " + nfe.getMessage());
                     }
                 }
             }
         } catch (FileNotFoundException ex) {
-            System.err.println("Could not find the file: " + ex.getMessage());
+            System.out.println("Could not find the file: " + ex.getMessage());
         } catch (Exception e) {
-            System.err.println("Got an error: " + e.getMessage());
+            System.out.println("Got an error: " + e.getMessage());
         }
         return new Profile(name, age, email, phone);
     }
