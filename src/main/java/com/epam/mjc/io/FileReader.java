@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class FileReader {
 
-    public Profile getDataFromFile(File file) {
+    public Profile getDataFromFile(File file) throws NumberFormatException {
         String name = null;
         int age = 0;
         String email = null;
@@ -18,19 +18,11 @@ public class FileReader {
                 if (keyValue[0].equals("Name")) {
                     name = keyValue[1];
                 } else if (keyValue[0].equals("Age")) {
-                    try {
-                        age = Integer.parseInt(keyValue[1]);
-                    } catch (NumberFormatException nfe) {
-                        System.out.println("Error while parsing age: " + nfe.getMessage());
-                    }
+                    age = Integer.parseInt(keyValue[1]);
                 } else if (keyValue[0].equals("Email")) {
                     email = keyValue[1];
                 } else if (keyValue[0].equals("Phone")) {
-                    try {
-                        phone = Long.parseLong(keyValue[1]);
-                    } catch (NumberFormatException nfe) {
-                        System.out.println("Error while parsing phone: " + nfe.getMessage());
-                    }
+                    phone = Long.parseLong(keyValue[1]);
                 }
             }
         } catch (FileNotFoundException ex) {
