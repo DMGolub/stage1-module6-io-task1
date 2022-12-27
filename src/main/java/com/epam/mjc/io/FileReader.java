@@ -3,10 +3,11 @@ package com.epam.mjc.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class FileReader {
 
-    public Profile getDataFromFile(File file) {
+    public Profile getDataFromFile(File file) throws NumberFormatException {
         String name = null;
         int age = 0;
         String email = null;
@@ -26,11 +27,9 @@ public class FileReader {
                 }
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("Could not find the file: " + ex.getMessage());
-        } catch (NumberFormatException nfe) {
-            System.err.println("Error while parsing age or name: " + nfe.getMessage());
-        } catch (Exception e) {
-            System.out.println("Got an error: " + e.getMessage());
+            System.err.println("Could not find the file: " + ex.getMessage());
+        } catch (IOException ex) {
+            System.err.println("I/O exception: " + ex.getMessage());
         }
         return new Profile(name, age, email, phone);
     }
