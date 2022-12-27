@@ -2,7 +2,6 @@ package com.epam.mjc.io;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileReader {
@@ -39,7 +38,7 @@ public class FileReader {
                 }
             }
         } catch (IOException  ex) {
-            System.err.println(ex.getMessage());
+            // Log error
         }
         return new Profile(name, age, email, phone);
     }
