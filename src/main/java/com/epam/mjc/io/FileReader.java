@@ -15,27 +15,22 @@ public class FileReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] keyValue = line.split(": ");
-                switch (keyValue[0]) {
-                    case "Name":
-                        name = keyValue[1];
-                        break;
-                    case "Age":
-                        try {
-                            age = Integer.parseInt(keyValue[1]);
-                        } catch (NumberFormatException nfe) {
-                            System.err.println("Error while parsing age: " + nfe.getMessage());
-                        }
-                        break;
-                    case "Email":
-                        email = keyValue[1];
-                        break;
-                    case "Phone":
-                        try {
-                            phone = Long.parseLong(keyValue[1]);
-                        } catch (NumberFormatException nfe) {
-                            System.err.println("Error while parsing phone: " + nfe.getMessage());
-                        }
-                        break;
+                if (keyValue[0].equals("Name")) {
+                    name = keyValue[1];
+                } else if (keyValue[0].equals("Age")) {
+                    try {
+                        age = Integer.parseInt(keyValue[1]);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("Error while parsing age: " + nfe.getMessage());
+                    }
+                } else if (keyValue[0].equals("Email")) {
+                    email = keyValue[1];
+                } else if (keyValue[0].equals("Phone")) {
+                    try {
+                        phone = Long.parseLong(keyValue[1]);
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("Error while parsing phone: " + nfe.getMessage());
+                    }
                 }
             }
         } catch (FileNotFoundException ex) {
