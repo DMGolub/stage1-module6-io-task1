@@ -7,6 +7,11 @@ import java.io.IOException;
 
 public class FileReader {
 
+    private static final String NAME_KEY = "Name";
+    private static final String AGE_KEY = "Age";
+    private static final String EMAIL_KEY = "Email";
+    private static final String PHONE_KEY = "Phone";
+
     public Profile getDataFromFile(File file) throws NumberFormatException {
         String name = null;
         int age = 0;
@@ -16,20 +21,25 @@ public class FileReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] keyValue = line.split(": ");
-                if (keyValue[0].equals("Name")) {
-                    name = keyValue[1];
-                } else if (keyValue[0].equals("Age")) {
-                    age = Integer.parseInt(keyValue[1]);
-                } else if (keyValue[0].equals("Email")) {
-                    email = keyValue[1];
-                } else if (keyValue[0].equals("Phone")) {
-                    phone = Long.parseLong(keyValue[1]);
+                switch (keyValue[0]) {
+                    case NAME_KEY:
+                        name = keyValue[1];
+                        break;
+                    case AGE_KEY:
+                        age = Integer.parseInt(keyValue[1]);
+                        break;
+                    case EMAIL_KEY:
+                        email = keyValue[1];
+                        break;
+                    case PHONE_KEY:
+                        phone = Long.parseLong(keyValue[1]);
+                        break;
+                    default:
+                        break;
                 }
             }
-        } catch (FileNotFoundException ex) {
-            System.err.println("Could not find the file: " + ex.getMessage());
-        } catch (IOException ex) {
-            System.err.println("I/O exception: " + ex.getMessage());
+        } catch (IOException  ex) {
+            System.err.println(ex.getMessage());
         }
         return new Profile(name, age, email, phone);
     }
