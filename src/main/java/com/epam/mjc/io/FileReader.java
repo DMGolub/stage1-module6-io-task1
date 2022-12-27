@@ -3,7 +3,6 @@ package com.epam.mjc.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class FileReader {
 
@@ -12,7 +11,6 @@ public class FileReader {
         int age = 0;
         String email = null;
         long phone = 0L;
-
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -43,7 +41,7 @@ public class FileReader {
         } catch (FileNotFoundException ex) {
             System.err.println("Could not find the file: " + ex.getMessage());
         } catch (Exception e) {
-            System.err.println(e);
+            System.err.println("Got an error: " + e.getMessage());
         }
         return new Profile(name, age, email, phone);
     }
